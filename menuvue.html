@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apple</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .ulItem{
+            position: relative;
+        }
+        .ulItem li{
+            border: solid black 2px;
+            padding: 2px 10px;
+            margin: 2px 10px;
+            width: 180px;
+            display: inline-block;
+            float: left;
+            list-style-type: none;
+        }
+        .ulItem li a{
+            text-decoration: none;
+            color: black;
+        }
+        .img1{
+            /*position: absolute;*/
+            display: inline-block;
+           width:  200px;
+            height: 200px;
+            float: right;
+
+        }
+        .img2{
+            float: right;
+            clear: right;
+            display: inline-block;
+            max-width: 200px;
+            /*height: 200px;*/
+        }
+
+    </style>
+</head>
+
+<body>
+<div id='app'>
+    <div class="container ">
+        <h2>mega menu</h2>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist" >
+
+            <li class="nav-item" role="presentation" v-for="{title} in tabs">
+                <button class="nav-link" v-bind:class="{active: current == title }" @click="current = title" id="profile-tab" type="button" >{{title}}</button>
+            </li>
+        </ul>
+        <div class="tab-content p-3" id="myTabContent">
+            <div class="tab-pane fade active show" v-for="(item,index) in tabs" v-show="current == item.title" id="home" role="tabpanel">
+               <ul v-for="(moz ) in item.content" class="ulItem">
+                   <img :src="moz.image" class="img1" width="100px" height="100px" alt="">
+                   <li v-for="(links ,inx) in moz.links">
+
+                       <a href="">{{links}}</a>
+                   </li>
+                   <img :src="moz.image2" class="img2" v-if="moz.image2" alt="">
+
+
+
+               </ul>
+            </div>
+            <!--            <div class="tab-pane fade active show" id="profile" v-if="current == 'profile' " role="tabpanel">this is profile content</div>-->
+            <!--            <div class="tab-pane fade active show" id="contact" v-if="current == 'contact' " role="tabpanel">this is contact content</div>-->
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    const App = {
+        data() {
+            return {
+                current: 'iphone',
+                tabs:[
+                    {
+                        title:'iphone',
+                        content:[{
+                            image:'iphone-13-pink-select-2021.png',
+                            image2: 'index.jpg',
+                            links:['iphone13',"iphone14","iphone 13 pro max",'iphone 14 pro','iphone 14 pro max',"iphone 13 max"]
+                        }]
+                    },{
+                        title:'macbook',
+                        content:[{
+                            image:'1638909856_macbook-pro-14-and-16_overview__fz0lron5xyuu_og-780x470.png',
+                            links:['macbook pro 14-in',"macbook air m1","macbook air retina",
+                                'macbook pro 13-in','macbook air m2']
+                        }]
+                    },{
+                        title:'display',
+                        content:[{
+                            image:'Pro_Display_Desktop_US_01._CB444732905_.jpg',
+                            image2:'studio-display-og-202203.jpg',
+                            links:['studio display',"pro display xdr","mac studio",
+                                'imac 24','mac mini']
+                        }]
+                        // ways to improve the cod and apis
+                        /*
+                        * first we get url to also we can change links style and make it like content
+                        * we can use 2 images to
+                        * */
+                    },{
+                        title:'ipad',
+                        content:[{
+                            image:'ipad-pro-12-select-wifi-spacegray-202104_FMT_WHH.jpg',
+                            links:['ipad pro 12',"ipad air","ipad",
+                                'ipad keyboards','ipad mini']
+                        }]
+                    },{
+                        title:'watch',
+                        content:[{
+                            image:'MN473ref_VW_34FR+watch-45-alum-midnight-nc-7s_VW_34FR_WF_CO.jpg',
+                            links:['series 7 45mm',"series 7 41mm","series se 2022 40mm",
+                                'series se 2022 44mm','series 6 40mm','series 6 44mm','series 3 38mm','series 3 42mm']
+                        }],
+
+                    },{
+                        title:'airpods',
+                        content:[{
+                            image:'Original-Apple-AirPods-Pro-with-ANC-MWP22ZM-A-White-0190199247000-30102019-01-p.jpg',
+                            links:['airpods pro',"airpods max","airpods g2",
+                                'airpods g3','airpods pro 2022',]
+                        }]
+                    },
+
+                ]
+
+            }
+        },
+
+    }
+
+    Vue.createApp(App).mount('#app')
+</script>
+</body>
+</html>
